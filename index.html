@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenesis Ltd — Data Analytics & Business Consultancy | Accra, Ghana</title>
+<meta name="description" content="Zenesis Ltd helps Ghana's SMEs turn raw business data into real growth. Affordable data analytics, strategic planning, and business consultancy based in Accra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#faf7f2;--ink2:#ffffff;--ink3:#f2ede4;
+  --cream:#1c1c2e;--cream2:#2d2d45;
+  --gold:#9a6c1f;--gold2:#b8832a;--gold3:#d4a84a;
+  --slate:#7a7a9a;--slate2:#5a5a7a;--white:#ffffff;
+  --radius:12px;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--ink);color:var(--cream);overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3{font-family:var(--serif);}
+.cur{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;}
+.cur-o{width:32px;height:32px;border:1px solid rgba(200,151,58,.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;}
+nav{position:fixed;top:0;width:100%;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:22px 64px;transition:all .4s;}
+nav.scrolled{background:rgba(250,247,242,.96);backdrop-filter:blur(20px);padding:16px 64px;border-bottom:1px solid rgba(154,108,31,.15);box-shadow:0 2px 20px rgba(0,0,0,.06);}
+.nav-logo{font-family:var(--serif);font-size:1.6rem;font-weight:700;letter-spacing:.02em;color:var(--cream);}
+.nav-logo sup{font-family:var(--sans);font-size:.5rem;font-weight:600;letter-spacing:.15em;color:var(--gold);vertical-align:super;margin-left:2px;}
+.nav-links{display:flex;align-items:center;gap:38px;}
+.nav-links a{font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#888;transition:color .2s;}
+.nav-links a:hover{color:var(--cream);}
+.nav-cta{background:transparent!important;border:1px solid var(--gold);color:var(--gold)!important;padding:9px 22px;border-radius:4px;font-size:.78rem!important;letter-spacing:.1em!important;transition:background .2s,color .2s!important;}
+.nav-cta:hover{background:var(--gold)!important;color:var(--ink)!important;}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 64px 80px;position:relative;overflow:hidden;gap:60px;background:linear-gradient(135deg,#faf7f2 60%,#f5ede0 100%);scroll-margin-top:80px;}
+.hero-grain{position:absolute;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.25;}
+.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(154,108,31,.08) 0%,transparent 70%);top:50%;left:60%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-left{position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:fadeUp .8s .1s ease forwards;}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.hero-h1{font-size:clamp(3.2rem,5.5vw,5.8rem);font-weight:700;line-height:1.02;letter-spacing:-.01em;color:var(--cream);opacity:0;animation:fadeUp .8s .2s ease forwards;}
+.hero-h1 em{font-style:italic;color:var(--gold);font-weight:400;}
+.hero-body{margin-top:28px;font-size:1.05rem;font-weight:300;line-height:1.8;color:rgba(28,28,46,.7);max-width:480px;opacity:0;animation:fadeUp .8s .3s ease forwards;}
+.hero-btns{margin-top:44px;display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .4s ease forwards;}
+.btn-gold{background:var(--gold);color:var(--ink);padding:14px 32px;border-radius:4px;font-size:.88rem;font-weight:600;letter-spacing:.04em;transition:background .2s,transform .2s;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-ghost{border:1px solid rgba(200,151,58,.35);color:var(--cream);padding:14px 32px;border-radius:4px;font-size:.88rem;font-weight:400;letter-spacing:.04em;transition:border-color .2s,color .2s;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+
+
+.hero-right{position:relative;z-index:1;opacity:0;animation:fadeIn 1s .6s ease forwards;}
+.h-card{background:#fff;border:1px solid rgba(154,108,31,.18);box-shadow:0 8px 40px rgba(0,0,0,.08);border-radius:16px;padding:32px;position:relative;overflow:hidden;}
+.h-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.h-card-label{font-size:.68rem;font-weight:600;letter-spacing:.14em;color:var(--gold);margin-bottom:24px;}
+.chart-bars{display:flex;align-items:flex-end;gap:8px;height:110px;margin-bottom:10px;}
+.cb{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(to top,rgba(154,108,31,.35),rgba(154,108,31,.1));border:1px solid rgba(154,108,31,.25);border-bottom:none;transform:scaleY(0);transform-origin:bottom;animation:growBar 1s ease forwards;}
+.cb:nth-child(1){height:28%;animation-delay:.7s;}
+.cb:nth-child(2){height:48%;animation-delay:.85s;}
+.cb:nth-child(3){height:68%;animation-delay:1s;}
+.cb:nth-child(4){height:88%;animation-delay:1.15s;background:linear-gradient(to top,var(--gold),var(--gold2));border-color:var(--gold);}
+.chart-qs{display:flex;gap:8px;}
+.chart-qs span{flex:1;text-align:center;font-size:.68rem;color:#aaa;}
+.h-card-divider{height:1px;background:rgba(0,0,0,.07);margin:20px 0;}
+.h-card-row{display:flex;justify-content:space-between;align-items:center;}
+.h-card-row-label{font-size:.78rem;color:#888;}
+.h-card-row-val{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--gold);}
+.badge-pill{position:absolute;background:#fff;border:1px solid rgba(154,108,31,.25);box-shadow:0 2px 12px rgba(0,0,0,.08);border-radius:100px;padding:8px 16px;font-size:.75rem;font-weight:500;display:flex;align-items:center;gap:7px;white-space:nowrap;}
+.badge-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;}
+.bp1{top:-18px;right:24px;animation:float 5s ease-in-out infinite;}
+.bp2{bottom:-16px;left:16px;animation:float 5s 2.5s ease-in-out infinite;}
+.band{background:#f0ebe0;border-top:1px solid rgba(154,108,31,.12);border-bottom:1px solid rgba(154,108,31,.12);padding:60px 64px;}
+.band-inner{display:flex;gap:60px;align-items:center;flex-wrap:wrap;}
+.band-text{flex:1;min-width:280px;max-width:680px;}
+.band-text h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;line-height:1.15;color:var(--cream);}
+.band-text h2 em{font-style:italic;color:var(--gold);font-weight:400;}
+.band-text p{margin-top:14px;color:#555;line-height:1.8;font-weight:300;}
+.band-stats{display:flex;gap:20px;flex-wrap:wrap;flex:1;min-width:280px;}
+.bstat{flex:1;min-width:120px;background:#fff;border:1px solid rgba(154,108,31,.18);box-shadow:0 2px 12px rgba(0,0,0,.05);border-radius:var(--radius);padding:20px;text-align:center;}
+.bstat-n{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--gold);}
+.bstat-l{font-size:.76rem;color:#888;margin-top:6px;line-height:1.4;}
+section{padding:100px 64px;scroll-margin-top:90px;}
+.band{scroll-margin-top:80px;}
+.m-ps{display:block;text-align:center;margin-top:10px;background:var(--gold);color:#fff;padding:13px;border-radius:8px;font-weight:600;font-size:.9rem;transition:opacity .2s;cursor:pointer;border:none;width:100%;font-family:var(--sans);}
+.m-ps:hover{opacity:.88;}
+.m-tabs{display:flex;gap:0;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;margin-bottom:18px;}
+.m-tab{flex:1;padding:9px;text-align:center;font-size:.75rem;font-weight:600;letter-spacing:.06em;cursor:pointer;border:none;background:#f5f5f5;color:#888;transition:background .2s,color .2s;font-family:var(--sans);}
+.m-tab.active{background:var(--gold);color:#fff;}
+.m-panel{display:none;}.m-panel.active{display:block;}
+.s-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.s-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);}
+.s-h2{font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;line-height:1.1;color:var(--cream);}
+.s-h2 em{font-style:italic;color:var(--gold);font-weight:400;}
+.s-sub{margin-top:16px;color:#666;font-size:1rem;line-height:1.8;max-width:520px;font-weight:300;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+#services{background:#faf7f2;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1px;margin-top:56px;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.06);border-radius:16px;overflow:hidden;}
+.svc{background:#faf7f2;padding:36px 32px;position:relative;overflow:hidden;transition:background .3s;cursor:default;}
+.svc:hover{background:#fff;}
+.svc-num{font-family:var(--serif);font-size:2.8rem;font-weight:700;color:rgba(154,108,31,.15);line-height:1;margin-bottom:20px;transition:color .3s;}
+.svc:hover .svc-num{color:rgba(154,108,31,.3);}
+.svc-icon{font-size:1.6rem;margin-bottom:14px;}
+.svc-title{font-size:1.1rem;font-weight:600;margin-bottom:10px;color:var(--cream);}
+.svc-desc{font-size:.88rem;color:#666;line-height:1.75;font-weight:300;}
+.svc-tag{display:inline-block;margin-top:20px;font-size:.68rem;font-weight:600;letter-spacing:.1em;color:var(--gold);padding:4px 12px;background:rgba(200,151,58,.08);border:1px solid rgba(200,151,58,.2);border-radius:100px;}
+#who{background:#f0ebe0;}
+.who-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;margin-top:48px;}
+.who-card{border:1px solid rgba(0,0,0,.09);background:#fff;border-radius:var(--radius);padding:24px 20px;transition:border-color .3s,background .3s;cursor:default;}
+.who-card:hover{border-color:rgba(154,108,31,.35);background:#fdf8f0;}
+.who-icon{font-size:1.6rem;margin-bottom:12px;}
+.who-name{font-size:.95rem;font-weight:600;margin-bottom:6px;color:var(--cream);}
+.who-note{font-size:.8rem;color:#888;line-height:1.5;}
+#pricing{background:#faf7f2;}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:24px;margin-top:56px;}
+.pc{border:1px solid rgba(0,0,0,.09);border-radius:16px;padding:36px 32px;position:relative;transition:border-color .3s,transform .3s;background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.05);}
+.pc:hover{transform:translateY(-4px);border-color:rgba(154,108,31,.3);box-shadow:0 12px 40px rgba(0,0,0,.1);}
+.pc.feat{border-color:var(--gold);background:linear-gradient(145deg,#fffaf0,#fff8e8);box-shadow:0 8px 32px rgba(154,108,31,.18);}
+.pop-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.1em;padding:5px 18px;border-radius:100px;white-space:nowrap;}
+.pc-plan{font-size:.7rem;font-weight:600;letter-spacing:.14em;color:var(--gold);margin-bottom:10px;}
+.pc-price{font-family:var(--serif);font-size:3.2rem;font-weight:700;color:var(--cream);line-height:1;}
+.pc-per{font-size:.82rem;color:#888;margin-top:4px;}
+.pc-desc{margin-top:14px;font-size:.88rem;color:#666;line-height:1.7;font-weight:300;}
+.pc-div{height:1px;background:rgba(0,0,0,.08);margin:24px 0;}
+.pc-feats{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.pc-feats li{display:flex;gap:10px;font-size:.88rem;color:#555;}
+.pc-feats li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0;}
+.pc-btn{display:block;text-align:center;margin-top:28px;padding:13px;border-radius:6px;font-size:.85rem;font-weight:600;letter-spacing:.04em;cursor:pointer;border:none;width:100%;font-family:var(--sans);transition:all .2s;}
+.pc-btn-o{background:transparent;border:1px solid rgba(154,108,31,.35);color:#1c1c2e;}
+.pc-btn-o:hover{border-color:var(--gold);color:var(--gold);}
+.pc-btn-s{background:var(--gold);color:var(--ink);}
+.pc-btn-s:hover{background:var(--gold2);}
+.workshop-strip{margin-top:36px;border:1px solid rgba(0,0,0,.09);background:#fff;border-radius:var(--radius);padding:22px 28px;display:flex;align-items:center;gap:18px;color:#666;font-size:.9rem;}
+.workshop-strip strong{color:#1c1c2e;}
+#why{background:#f0ebe0;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:56px;align-items:start;}
+.why-pts{display:flex;flex-direction:column;gap:36px;}
+.why-pt{display:flex;gap:22px;align-items:flex-start;}
+.why-n{font-family:var(--serif);font-size:1rem;font-weight:700;color:rgba(200,151,58,.4);flex-shrink:0;margin-top:2px;width:28px;}
+.why-c h4{font-size:1.05rem;font-weight:600;margin-bottom:7px;color:var(--cream);}
+.why-c p{font-size:.88rem;color:#666;line-height:1.75;font-weight:300;}
+.why-vis{background:#fff;border:1px solid rgba(0,0,0,.08);box-shadow:0 2px 16px rgba(0,0,0,.05);border-radius:16px;padding:32px;}
+.why-vis-title{font-size:.68rem;font-weight:600;letter-spacing:.14em;color:var(--gold);margin-bottom:24px;}
+.cmp-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.cmp-label{font-size:.8rem;color:#666;width:110px;flex-shrink:0;}
+.cmp-bar-bg{flex:1;height:6px;background:rgba(0,0,0,.07);border-radius:3px;overflow:hidden;}
+.cmp-bar{height:100%;border-radius:3px;}
+.cmp-val{font-size:.8rem;width:80px;text-align:right;}
+.why-perks{margin-top:28px;padding-top:24px;border-top:1px solid rgba(0,0,0,.07);}
+.why-perk-title{font-size:.68rem;font-weight:600;letter-spacing:.14em;color:var(--gold);margin-bottom:16px;}
+.why-perk{display:flex;gap:10px;align-items:center;font-size:.85rem;color:#555;margin-bottom:10px;}
+.why-perk::before{content:'→';color:var(--gold);}
+#process{background:#faf7f2;}
+.steps{display:flex;margin-top:60px;position:relative;gap:0;}
+.steps::before{content:'';position:absolute;top:36px;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold),rgba(200,151,58,.2));z-index:0;}
+.step{flex:1;text-align:center;position:relative;z-index:1;padding:0 16px;}
+.step-ring{width:72px;height:72px;border-radius:50%;background:#faf7f2;border:1px solid rgba(154,108,31,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--gold);transition:background .3s,border-color .3s;}
+.step:hover .step-ring{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.step-title{font-size:.92rem;font-weight:600;margin-bottom:8px;color:var(--cream);}
+.step-desc{font-size:.8rem;color:#888;line-height:1.65;}
+#contact{background:#f0ebe0;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:48px;}
+.c-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px;transition:transform .2s;}
+a.c-item:hover{transform:translateX(4px);}
+a.c-item:hover .c-icon{border-color:rgba(200,151,58,.5);background:rgba(200,151,58,.1);}
+a.c-item:hover .c-val{color:var(--gold);}
+.c-icon{width:42px;height:42px;border-radius:8px;flex-shrink:0;background:rgba(200,151,58,.06);border:1px solid rgba(200,151,58,.2);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .2s;}
+.c-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;color:var(--gold);margin-bottom:4px;}
+.c-val{font-size:.95rem;color:#1c1c2e;}
+.mission-card{margin-top:36px;padding:24px;border-left:2px solid var(--gold);background:rgba(154,108,31,.06);border-radius:0 8px 8px 0;}
+.mission-label{font-size:.68rem;font-weight:600;letter-spacing:.14em;color:var(--gold);margin-bottom:10px;}
+.mission-text{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:#666;line-height:1.7;}
+.form-card{background:#fff;border:1px solid rgba(0,0,0,.08);box-shadow:0 4px 24px rgba(0,0,0,.07);border-radius:16px;padding:36px;}
+.form-card h3{font-size:1.5rem;font-weight:700;margin-bottom:24px;color:var(--cream);}
+.fg{margin-bottom:18px;}
+.fg label{display:block;font-size:.75rem;font-weight:600;letter-spacing:.08em;color:#888;margin-bottom:7px;}
+.fg input,.fg textarea,.fg select{width:100%;background:#faf7f2;border:1px solid rgba(0,0,0,.12);border-radius:6px;padding:12px 14px;color:#1c1c2e;font-family:var(--sans);font-size:.92rem;outline:none;transition:border-color .2s;}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold);}
+.fg textarea{height:96px;resize:vertical;}
+.fg select option{background:#fff;color:#1c1c2e;}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-submit{width:100%;background:var(--gold);color:var(--ink);border:none;border-radius:6px;padding:14px;font-family:var(--sans);font-size:.88rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:background .2s,transform .2s;}
+.form-submit:hover{background:var(--gold2);transform:translateY(-1px);}
+#form-success{display:none;text-align:center;padding:32px;background:rgba(200,151,58,.06);border:1px solid rgba(200,151,58,.25);border-radius:12px;}
+footer{background:#ede8de;border-top:1px solid rgba(0,0,0,.08);padding:32px 64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.foot-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--cream);}
+.foot-copy{font-size:.78rem;color:#888;}
+.foot-links{display:flex;gap:28px;}
+.foot-links a{font-size:.78rem;color:#888;letter-spacing:.06em;transition:color .2s;}
+.foot-links a:hover{color:var(--gold);}
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);z-index:1000;align-items:center;justify-content:center;padding:20px;}
+.modal-ov.open{display:flex;}
+.modal{background:#fff;border:1px solid rgba(200,151,58,.25);border-radius:20px;padding:40px;max-width:460px;width:100%;position:relative;animation:mIn .35s cubic-bezier(.22,1,.36,1);}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);border-radius:20px 20px 0 0;}
+.m-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#aaa;font-size:1.4rem;cursor:pointer;line-height:1;transition:color .2s;}
+.m-close:hover{color:#333;}
+.m-badge{display:inline-block;background:rgba(200,151,58,.1);border:1px solid rgba(200,151,58,.3);color:var(--gold);font-size:.68rem;font-weight:600;letter-spacing:.12em;padding:4px 14px;border-radius:100px;margin-bottom:14px;}
+.modal h3{font-size:1.5rem;font-weight:700;margin-bottom:6px;color:var(--cream);}
+.m-amount{font-family:var(--serif);font-size:2.6rem;font-weight:700;color:var(--gold);margin-bottom:24px;}
+.m-amount span{font-family:var(--sans);font-size:.9rem;color:var(--slate);font-weight:400;}
+.m-method{background:#faf7f2;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:18px 20px;margin-bottom:12px;}
+.m-method-title{font-size:.68rem;font-weight:600;letter-spacing:.12em;color:var(--gold);margin-bottom:12px;}
+.m-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.m-row:last-child{margin-bottom:0;}
+.m-lbl{font-size:.8rem;color:#888;}
+.m-val{font-size:.9rem;font-weight:600;color:#1c1c2e;display:flex;align-items:center;gap:8px;}
+.copy-btn{background:rgba(200,151,58,.1);border:1px solid rgba(200,151,58,.25);color:var(--gold);font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:4px;cursor:pointer;transition:background .2s;}
+.copy-btn:hover{background:rgba(200,151,58,.25);}
+.m-note{margin-top:16px;font-size:.8rem;color:#666;line-height:1.65;padding:12px 14px;border-left:2px solid var(--gold);background:rgba(200,151,58,.04);border-radius:0 6px 6px 0;}
+.m-wa{display:block;text-align:center;margin-top:18px;background:#25d366;color:#fff;padding:13px;border-radius:8px;font-weight:600;font-size:.9rem;transition:opacity .2s;}
+.m-wa:hover{opacity:.88;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes growBar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes mIn{from{opacity:0;transform:scale(.94) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@media(max-width:900px){
+  nav{padding:16px 24px;}nav.scrolled{padding:14px 24px;}
+  .nav-links{display:none;}
+  #hero{grid-template-columns:1fr;padding:110px 24px 60px;gap:40px;}
+  .hero-right{display:none;}
+  section{padding:70px 24px;}
+  .band{padding:50px 24px;}
+  .why-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .steps{flex-wrap:wrap;gap:32px;}
+  .steps::before{display:none;}
+  footer{padding:28px 24px;flex-direction:column;align-items:flex-start;}
+  .fg-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+<div class="cur-o" id="curO"></div>
+
+<nav id="nav">
+  <div class="nav-logo">Zenesis<sup>LTD</sup></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#who">Clients</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#why">Why Us</a>
+    <a href="#process">Process</a>
+    <a href="#contact" class="nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Data Analytics &amp; Business Consultancy &middot; Accra, Ghana</div>
+    <h1 class="hero-h1">Turn your data<br>into <em>real growth.</em></h1>
+    <p class="hero-body">Zenesis Ltd helps Ghana's small and medium businesses transform raw data into clear strategies, measurable KPIs, and sustainable revenue &mdash; at prices built for SMEs.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/233555956614" target="_blank" class="btn-gold">Book a Free Discovery Call &rarr;</a>
+      <a href="#services" onclick="event.preventDefault();document.getElementById('services').scrollIntoView({behavior:'smooth',block:'start'})" class="btn-ghost">See Our Services</a>
+    </div>
+    </div>
+  <div class="hero-right">
+    <div class="h-card">
+      <div class="badge-pill bp1"><span class="dot"></span> Live: Client Growth</div>
+      <div class="h-card-label">REVENUE TRAJECTORY &mdash; CLIENT DATA</div>
+      <div class="chart-bars">
+        <div class="cb"></div><div class="cb"></div><div class="cb"></div><div class="cb"></div>
+      </div>
+      <div class="chart-qs"><span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span></div>
+      <div class="h-card-divider"></div>
+      <div class="h-card-row">
+        <span class="h-card-row-label">Annual growth projection</span>
+        <span class="h-card-row-val">&uarr; Strong</span>
+      </div>
+      <div class="badge-pill bp2">&#127919; 90-Day Action Plan</div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <div class="band-inner">
+    <div class="band-text reveal">
+      <h2>Most Ghanaian SMEs are making<br><em>expensive guesses.</em></h2>
+      <p>Over 85% of Ghana's registered businesses &mdash; the backbone of our economy &mdash; operate without reliable data or analytical capability. The result: wasted resources, missed opportunities, stalled growth. Zenesis exists to fix that.</p>
+    </div>
+
+  </div>
+</div>
+
+<section id="services">
+  <div class="s-eyebrow">What We Do</div>
+  <h2 class="s-h2">Six ways Zenesis<br><em>grows your business</em></h2>
+  <p class="s-sub">Every service is designed to meet you where you are &mdash; from your first data audit to full strategy implementation.</p>
+  <div class="services-grid">
+    <div class="svc reveal"><div class="svc-num">01</div><div class="svc-icon">&#128202;</div><div class="svc-title">Data Diagnostics</div><div class="svc-desc">We audit your existing data sources, identify gaps, inefficiencies, and quick wins that can immediately impact your bottom line.</div><span class="svc-tag">Diagnostic Report</span></div>
+    <div class="svc reveal"><div class="svc-num">02</div><div class="svc-icon">&#128161;</div><div class="svc-title">Insight Analysis</div><div class="svc-desc">Monthly deep-dives into your business data &mdash; uncovering trends, patterns, and opportunities you didn't know existed.</div><span class="svc-tag">Monthly Insights Report</span></div>
+    <div class="svc reveal"><div class="svc-num">03</div><div class="svc-icon">&#128506;</div><div class="svc-title">Strategic Planning</div><div class="svc-desc">Co-developed, evidence-based 90-day and annual action plans grounded in your real data &mdash; not generic templates.</div><span class="svc-tag">Strategy Document</span></div>
+    <div class="svc reveal"><div class="svc-num">04</div><div class="svc-icon">&#128295;</div><div class="svc-title">Implementation Support</div><div class="svc-desc">We don't just hand you a report and leave. We guide you hands-on through executing your approved strategy.</div><span class="svc-tag">Weekly Check-ins</span></div>
+    <div class="svc reveal"><div class="svc-num">05</div><div class="svc-icon">&#127891;</div><div class="svc-title">Staff Training</div><div class="svc-desc">Practical workshops on Excel, Power BI, and data-informed decision-making &mdash; so your team keeps improving long after we leave.</div><span class="svc-tag">Training Certificate</span></div>
+    <div class="svc reveal"><div class="svc-num">06</div><div class="svc-icon">&#128200;</div><div class="svc-title">Performance Monitoring</div><div class="svc-desc">Custom KPI dashboards and quarterly review sessions so you always know exactly where you stand.</div><span class="svc-tag">Dashboard + Review</span></div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="s-eyebrow">Who We Serve</div>
+  <h2 class="s-h2">Built for<br><em>businesses like yours</em></h2>
+  <p class="s-sub">We specialise in Ghana's most dynamic sectors, with deep understanding of local market realities.</p>
+  <div class="who-grid">
+    <div class="who-card reveal"><div class="who-icon">&#128717;</div><div class="who-name">Retail &amp; E-commerce</div><div class="who-note">Inventory waste, thin margins, pricing strategy</div></div>
+    <div class="who-card reveal"><div class="who-icon">&#127973;</div><div class="who-name">Healthcare Clinics</div><div class="who-note">Patient flow, cost management, resource allocation</div></div>
+    <div class="who-card reveal"><div class="who-icon">&#127981;</div><div class="who-name">Manufacturing</div><div class="who-note">Supply chain, quality control, output efficiency</div></div>
+    <div class="who-card reveal"><div class="who-icon">&#9878;</div><div class="who-name">Professional Services</div><div class="who-note">Client retention, pricing, profitability analysis</div></div>
+    <div class="who-card reveal"><div class="who-icon">&#127891;</div><div class="who-name">Education Providers</div><div class="who-note">Enrollment trends, resource planning, outcomes</div></div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="s-eyebrow">Pricing</div>
+  <h2 class="s-h2">Transparent plans.<br><em>No surprises.</em></h2>
+  <p class="s-sub">Affordable, subscription-based pricing designed specifically for Ghanaian SMEs &mdash; far below international consultancy rates.</p>
+  <div class="pricing-grid">
+    <div class="pc reveal">
+      <div class="pc-plan">BASIC &mdash; INSIGHT</div>
+      <div class="pc-price">GHS 500</div><div class="pc-per">per month</div>
+      <div class="pc-desc">Perfect for micro-enterprises ready to start making data-informed decisions.</div>
+      <div class="pc-div"></div>
+      <ul class="pc-feats"><li>Monthly data insights report</li><li>1 review call per month</li><li>Key metrics overview</li><li>Email support</li></ul>
+      <button onclick="openModal('basic')" class="pc-btn pc-btn-o">Get Started</button>
+    </div>
+    <div class="pc feat reveal">
+      <div class="pop-badge">MOST POPULAR</div>
+      <div class="pc-plan">STANDARD &mdash; GROWTH</div>
+      <div class="pc-price">GHS 1,000</div><div class="pc-per">per month</div>
+      <div class="pc-desc">For growing SMEs ready to scale with a clear data-driven strategy.</div>
+      <div class="pc-div"></div>
+      <ul class="pc-feats"><li>Full data analysis</li><li>Monthly strategy sessions</li><li>KPI tracking dashboard</li><li>Priority support</li><li>Quarterly business review</li></ul>
+      <button onclick="openModal('standard')" class="pc-btn pc-btn-s">Get Started</button>
+    </div>
+    <div class="pc reveal">
+      <div class="pc-plan">PREMIUM &mdash; TRANSFORM</div>
+      <div class="pc-price">GHS 1,500</div><div class="pc-per">per month</div>
+      <div class="pc-desc">Full-service partnership for established SMEs ready for serious transformation.</div>
+      <div class="pc-div"></div>
+      <ul class="pc-feats"><li>Everything in Standard</li><li>Implementation support</li><li>Staff training workshops</li><li>Weekly check-ins</li><li>Dedicated account management</li></ul>
+      <button onclick="openModal('premium')" class="pc-btn pc-btn-o">Get Started</button>
+    </div>
+  </div>
+  <div class="workshop-strip reveal">
+    <span style="font-size:1.4rem">&#127891;</span>
+    <div><strong>One-off Workshops also available:</strong> GHS 300&ndash;800 per session. Half-day or full-day group training on Excel, Power BI, and data-informed decision-making.</div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="s-eyebrow">Why Zenesis</div>
+  <h2 class="s-h2">Not just another<br><em>consultant.</em></h2>
+  <div class="why-grid">
+    <div class="why-pts">
+      <div class="why-pt reveal"><div class="why-n">01</div><div class="why-c"><h4>SME-Focused Pricing</h4><p>Our GHS 500&ndash;1,500/month plans are a fraction of what international consultancies charge &mdash; built specifically for Ghanaian businesses.</p></div></div>
+      <div class="why-pt reveal"><div class="why-n">02</div><div class="why-c"><h4>Deep Local Knowledge</h4><p>We understand Ghana's regulatory environment, market realities, and business culture. No generic templates &mdash; real, locally-grounded strategy.</p></div></div>
+      <div class="why-pt reveal"><div class="why-n">03</div><div class="why-c"><h4>Data Science + Teaching Expertise</h4><p>Our founder combines data science with a teaching background &mdash; complex insights communicated clearly to non-technical business owners.</p></div></div>
+      <div class="why-pt reveal"><div class="why-n">04</div><div class="why-c"><h4>Fully Virtual. Accessible Across Ghana.</h4><p>No commute, no office overhead. We serve clients anywhere in Ghana via Google Meet, Zoom, and WhatsApp Business.</p></div></div>
+    </div>
+    <div class="why-vis reveal">
+      <div class="why-vis-title">PRICING COMPARISON</div>
+      <div class="cmp-row"><div class="cmp-label">Zenesis Ltd</div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:18%;background:var(--gold);"></div></div><div class="cmp-val" style="color:var(--gold);font-weight:600;">GHS 1,500</div></div>
+      <div class="cmp-row"><div class="cmp-label">Local Generalists</div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:45%;background:rgba(0,0,0,.12);"></div></div><div class="cmp-val" style="color:#888;">GHS 3,000+</div></div>
+      <div class="cmp-row"><div class="cmp-label">Int'l Firms</div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:100%;background:rgba(0,0,0,.07);"></div></div><div class="cmp-val" style="color:#888;">GHS 5,000+</div></div>
+      <div class="why-perks">
+        <div class="why-perk-title">WHAT ZENESIS BRINGS</div>
+        <div class="why-perk">Data science capability</div>
+        <div class="why-perk">Full-service (not just reports)</div>
+        <div class="why-perk">Ghana-specific strategy</div>
+        <div class="why-perk">Staff capacity building</div>
+        <div class="why-perk">Reliable, consistent delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="s-eyebrow">How It Works</div>
+  <h2 class="s-h2">From first call to<br><em>measurable results</em></h2>
+  <p class="s-sub">A clear, structured process so you always know what's happening and what comes next.</p>
+  <div class="steps reveal">
+    <div class="step"><div class="step-ring">1</div><div class="step-title">Discovery Call</div><div class="step-desc">Free 30-min call to understand your business, goals, and data situation.</div></div>
+    <div class="step"><div class="step-ring">2</div><div class="step-title">Data Diagnostic</div><div class="step-desc">We audit your data sources and identify your biggest opportunities.</div></div>
+    <div class="step"><div class="step-ring">3</div><div class="step-title">Strategy Session</div><div class="step-desc">We co-create a clear 90-day action plan grounded in evidence.</div></div>
+    <div class="step"><div class="step-ring">4</div><div class="step-title">Implementation</div><div class="step-desc">We guide you through executing the strategy with weekly check-ins.</div></div>
+    <div class="step"><div class="step-ring">5</div><div class="step-title">Track &amp; Grow</div><div class="step-desc">Monitor KPIs on your custom dashboard and review quarterly.</div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="s-eyebrow">Get In Touch</div>
+  <h2 class="s-h2">Ready to grow<br><em>with data?</em></h2>
+  <p class="s-sub">Book a free 30-minute discovery call. No commitment, no pressure &mdash; just a conversation about your business.</p>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <a href="tel:+233599742594" class="c-item"><div class="c-icon">&#128222;</div><div><div class="c-label">PHONE</div><div class="c-val">+233 599 742 594</div></div></a>
+      <a href="https://wa.me/233555956614" target="_blank" class="c-item"><div class="c-icon">&#128172;</div><div><div class="c-label">WHATSAPP</div><div class="c-val">+233 555 956 614</div></div></a>
+      <a href="mailto:xenates.datahub@gmail.com" class="c-item"><div class="c-icon">&#9993;</div><div><div class="c-label">EMAIL</div><div class="c-val">xenates.datahub@gmail.com</div></div></a>
+      <div class="c-item"><div class="c-icon">&#128205;</div><div><div class="c-label">LOCATION</div><div class="c-val">Accra, Ghana &middot; Virtual across Ghana</div></div></div>
+      <div class="mission-card">
+        <div class="mission-label">OUR MISSION</div>
+        <div class="mission-text">"Empowering Ghanaian businesses with data-driven strategies to achieve measurable growth and operational excellence."</div>
+      </div>
+    </div>
+    <div class="form-card reveal">
+      <h3>Send us a message</h3>
+      <div id="form-success" style="color:#1c1c2e;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#9989;</div>
+        <div style="font-family:var(--serif);font-size:1.2rem;font-weight:700;margin-bottom:6px;color:var(--cream);">Message received!</div>
+        <div style="font-size:.88rem;color:var(--slate2);">We'll be in touch within 24 hours.</div>
+      </div>
+      <form id="contact-form" action="https://formspree.io/f/mojrneky" method="POST">
+        <div class="fg-row">
+          <div class="fg"><label>YOUR NAME</label><input type="text" name="name" placeholder="Kofi Mensah" required></div>
+          <div class="fg"><label>BUSINESS NAME</label><input type="text" name="business" placeholder="Mensah Retail Ltd"></div>
+        </div>
+        <div class="fg"><label>EMAIL ADDRESS *</label><input type="email" name="email" placeholder="your@email.com" required></div>
+        <div class="fg"><label>PHONE / WHATSAPP</label><input type="text" name="phone" placeholder="+233..."></div>
+        <div class="fg"><label>I'M INTERESTED IN</label>
+          <select name="interest">
+            <option>Free Discovery Call</option>
+            <option>Basic Plan (GHS 500/mo)</option>
+            <option>Standard Plan (GHS 1,000/mo)</option>
+            <option>Premium Plan (GHS 1,500/mo)</option>
+            <option>Workshop / Training</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+        <div class="fg"><label>TELL US ABOUT YOUR BUSINESS</label><textarea name="message" placeholder="What does your business do? What's your biggest challenge right now?"></textarea></div>
+        <button type="submit" class="form-submit" id="submit-btn">Send Message &rarr;</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">Zenesis Ltd</div>
+  <div class="foot-copy">&copy; 2025 Zenesis Ltd &middot; Accra, Ghana &middot; Data &middot; Strategy &middot; Growth</div>
+  <div class="foot-links"><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
+</footer>
+
+<div class="modal-ov" id="payModal" onclick="closeModal(event)">
+  <div class="modal" style="max-height:90vh;overflow-y:auto;">
+    <button class="m-close" onclick="document.getElementById('payModal').classList.remove('open');document.body.style.overflow=''">&times;</button>
+    <div class="m-badge" id="mBadge">STANDARD PLAN</div>
+    <h3 id="mTitle">Make Payment</h3>
+    <div class="m-amount" id="mAmount">GHS 1,000 <span>/month</span></div>
+    <div class="m-tabs">
+      <button class="m-tab active" onclick="switchTab('momo')">📱 MoMo</button>
+      <button class="m-tab" onclick="switchTab('bank')">🏦 Bank</button>
+      <button class="m-tab" onclick="switchTab('paystack')">💳 Card / Online</button>
+    </div>
+    <div id="tab-momo" class="m-panel active">
+      <div class="m-method">
+        <div class="m-method-title">📱 MTN MOBILE MONEY</div>
+        <div class="m-row"><span class="m-lbl">MoMo Number</span><span class="m-val">0599 742 594 <button class="copy-btn" onclick="copyText('0599742594',this)">Copy</button></span></div>
+        <div class="m-row"><span class="m-lbl">Account Name</span><span class="m-val">Israel Aidoo</span></div>
+        <div class="m-row"><span class="m-lbl">Amount</span><span class="m-val" id="momoAmt" style="color:var(--gold);">GHS 1,000</span></div>
+      </div>
+    </div>
+    <div id="tab-bank" class="m-panel">
+      <div class="m-method">
+        <div class="m-method-title">🏦 BANK TRANSFER — UBA GHANA</div>
+        <div class="m-row"><span class="m-lbl">Account Number</span><span class="m-val">01033982601500 <button class="copy-btn" onclick="copyText('01033982601500',this)">Copy</button></span></div>
+        <div class="m-row"><span class="m-lbl">Account Name</span><span class="m-val">Israel Aidoo</span></div>
+        <div class="m-row"><span class="m-lbl">Bank</span><span class="m-val">UBA Ghana</span></div>
+        <div class="m-row"><span class="m-lbl">Branch</span><span class="m-val">Madina</span></div>
+        <div class="m-row"><span class="m-lbl">Sort Code</span><span class="m-val">060110 <button class="copy-btn" onclick="copyText('060110',this)">Copy</button></span></div>
+        <div class="m-row"><span class="m-lbl">SWIFT Code</span><span class="m-val">STBGGHACXX <button class="copy-btn" onclick="copyText('STBGGHACXX',this)">Copy</button></span></div>
+        <div class="m-row"><span class="m-lbl">Amount</span><span class="m-val" id="bankAmt" style="color:var(--gold);">GHS 1,000</span></div>
+      </div>
+    </div>
+    <div id="tab-paystack" class="m-panel">
+      <div class="m-method" style="text-align:center;padding:20px;">
+        <div style="font-size:2rem;margin-bottom:10px;">💳</div>
+        <div style="font-weight:600;margin-bottom:6px;color:#1c1c2e;">Pay Securely Online</div>
+        <div style="font-size:.82rem;color:#888;margin-bottom:16px;">Card, bank transfer, USSD, or mobile money — powered by Paystack</div>
+        <button id="paystackBtn" class="m-ps" onclick="payWithPaystack()">Pay <span id="psAmt">GHS 1,000</span> with Paystack →</button>
+        <div style="font-size:.72rem;color:#aaa;margin-top:10px;">🔒 Secured by Paystack · SSL encrypted</div>
+      </div>
+    </div>
+    <div class="m-note">After payment, send your proof of payment and business name via WhatsApp so we can confirm and get started promptly.</div>
+    <a id="mWa" href="https://wa.me/233599742594" target="_blank" class="m-wa">💬 Send Payment Proof on WhatsApp</a>
+  </div>
+</div>
+
+<script src="https://js.paystack.co/v2/inline.js"></script>
+<script>
+const cur=document.getElementById('cur'),curO=document.getElementById('curO');
+let mx=0,my=0,ox=0,oy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-5}px,${my-5}px)`;});
+(function loop(){ox+=(mx-ox)*.1;oy+=(my-oy)*.1;curO.style.transform=`translate(${ox-16}px,${oy-16}px)`;requestAnimationFrame(loop);})();
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const cForm=document.getElementById('contact-form'),cBtn=document.getElementById('submit-btn'),cSuc=document.getElementById('form-success');
+cForm.addEventListener('submit',async e=>{
+  e.preventDefault();cBtn.textContent='Sending...';cBtn.disabled=true;
+  try{
+    const res=await fetch(cForm.action,{method:'POST',body:new FormData(cForm),headers:{Accept:'application/json'}});
+    if(res.ok){cForm.style.display='none';cSuc.style.display='block';}
+    else{cBtn.textContent='Something went wrong. Try again.';cBtn.style.background='#b33';cBtn.disabled=false;}
+  }catch{cBtn.textContent='Network error. Try again.';cBtn.disabled=false;}
+});
+const plans={
+  basic:{badge:'BASIC PLAN',title:'Basic — Insight',amount:'GHS 500',amountPesewas:50000},
+  standard:{badge:'STANDARD PLAN',title:'Standard — Growth',amount:'GHS 1,000',amountPesewas:100000},
+  premium:{badge:'PREMIUM PLAN',title:'Premium — Transform',amount:'GHS 1,500',amountPesewas:150000},
+};
+let currentPlan='standard';
+function openModal(plan){
+  currentPlan=plan;
+  const p=plans[plan];
+  document.getElementById('mBadge').textContent=p.badge;
+  document.getElementById('mTitle').textContent=p.title;
+  document.getElementById('mAmount').innerHTML=p.amount+' <span>/month</span>';
+  document.getElementById('momoAmt').textContent=p.amount;
+  document.getElementById('bankAmt').textContent=p.amount;
+  document.getElementById('psAmt').textContent=p.amount;
+  const msg=encodeURIComponent('Hi Israel, I just made payment for the '+p.title+' ('+p.amount+'/month). Please find my proof of payment attached.');
+  document.getElementById('mWa').href='https://wa.me/233599742594?text='+msg;
+  switchTab('momo');
+  document.getElementById('payModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(e){if(e.target===document.getElementById('payModal')){document.getElementById('payModal').classList.remove('open');document.body.style.overflow='';}}
+function copyText(text,btn){navigator.clipboard.writeText(text).then(()=>{const o=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=o,2000);});}
+function switchTab(tab){
+  document.querySelectorAll('.m-tab').forEach((t,i)=>{t.classList.toggle('active',['momo','bank','paystack'][i]===tab);});
+  document.querySelectorAll('.m-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+function payWithPaystack(){
+  const p=plans[currentPlan];
+  const popup=new PaystackPop();
+  popup.newTransaction({
+    key:'pk_live_ef30c182959b43d223d177c97a47d34d1e8babe0',
+    email:document.querySelector('input[name="email"]')?.value||'client@zenesis.com',
+    amount:p.amountPesewas,
+    currency:'GHS',
+    ref:'ZNS-'+Date.now(),
+    metadata:{plan:p.title,company:'Zenesis Ltd'},
+    onSuccess:function(response){
+      document.getElementById('payModal').classList.remove('open');
+      document.body.style.overflow='';
+      alert('✅ Payment successful! Reference: '+response.reference+'\n\nPlease send this reference via WhatsApp to confirm your subscription.');
+      const msg=encodeURIComponent('Hi Israel, I just paid for '+p.title+' via Paystack. Reference: '+response.reference);
+      window.open('https://wa.me/233599742594?text='+msg,'_blank');
+    },
+    onCancel:function(){console.log('Payment window closed');}
+  });
+}
+</script>
+</body>
+</html>
